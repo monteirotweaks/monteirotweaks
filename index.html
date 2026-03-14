@@ -8,10 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --r:#e8000a;--r2:#ff2030;--r3:rgba(232,0,10,.12);
-  --bg:#060000;--bg2:#0d0000;--bg3:#130000;
-  --bdr:rgba(232,0,10,.13);
-  --w:#fff;--w2:#e8d0d0;--w3:#9a7070;--w4:#4a2525;
+  --r:#e8000a;--r2:#ff2030;--r3:rgba(232,0,10,.10);
+  --bg:#080808;--bg2:#111111;--bg3:#181818;
+  --bdr:rgba(255,255,255,.08);
+  --bdr-r:rgba(232,0,10,.18);
+  --w:#fff;--w2:#e8e4e0;--w3:#888078;--w4:#3a3530;
   --mono:'JetBrains Mono',monospace;
   --disp:'Bebas Neue',sans-serif;
   --body:'Syne',sans-serif;
@@ -27,7 +28,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:#0d0000;}
-::-webkit-scrollbar-thumb{background:var(--r);border-radius:2px;}
+::-webkit-scrollbar-thumb{background:#333;border-radius:2px;}
 
 /* ═══ LOADER ═══ */
 #loader{position:fixed;inset:0;z-index:9999;background:var(--bg);
@@ -66,8 +67,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
   width:900px;height:700px;pointer-events:none;
   background:radial-gradient(ellipse,rgba(232,0,10,.14) 0%,transparent 60%);}
 .hero-grid{position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(232,0,10,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(232,0,10,.04) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
   background-size:64px 64px;
   mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 80%);}
 
@@ -116,7 +117,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 
 /* ═══ MARQUEE STATS ═══ */
 .marquee-wrap{overflow:hidden;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);
-  background:var(--bg2);padding:14px 0;}
+  background:#0e0e0e;padding:14px 0;}
 .marquee-inner{display:flex;gap:0;white-space:nowrap;animation:marquee 22s linear infinite;}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .marquee-item{display:inline-flex;align-items:center;gap:10px;padding:0 40px;
@@ -137,6 +138,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 .fps-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:2px;
   padding:28px 24px;position:relative;overflow:hidden;transition:.25s;}
 .fps-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--r);}
+.fps-card:nth-child(even)::before{background:rgba(255,255,255,.15);}
+.fps-card:nth-child(even){border-color:rgba(255,255,255,.07);}
+.fps-card:nth-child(even) .fps-after .n{color:var(--w);text-shadow:none;}
+.fps-card:nth-child(even) .fps-after .l{color:var(--w3);}
 .fps-card:hover{border-color:rgba(232,0,10,.35);transform:translateY(-4px);}
 .fps-game{font-family:var(--disp);font-size:20px;letter-spacing:3px;margin-bottom:20px;color:var(--w);}
 .fps-row{display:flex;align-items:flex-end;gap:12px;}
@@ -154,9 +159,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
   border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}
 .terminal-inner{max-width:1000px;margin:0 auto;
   display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.terminal-box{background:#0a0000;border:1px solid var(--bdr);border-radius:3px;overflow:hidden;
+.terminal-box{background:#0c0c0c;border:1px solid var(--bdr);border-radius:3px;overflow:hidden;
   box-shadow:0 0 60px rgba(232,0,10,.08);}
-.terminal-bar{background:#130000;padding:10px 16px;
+.terminal-bar{background:#161616;padding:10px 16px;
   display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bdr);}
 .t-dot{width:11px;height:11px;border-radius:50%;}
 .t-dot.r{background:#ff5f57;}.t-dot.y{background:#febc2e;}.t-dot.g{background:#28c840;}
@@ -177,11 +182,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 .plans-section{padding:88px 24px;max-width:1000px;margin:0 auto;}
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px;}
 @media(max-width:780px){.plans-grid{grid-template-columns:1fr;}}
-.plan{background:var(--bg2);border:1px solid var(--bdr);border-radius:2px;
+.plan{background:#111;border:1px solid rgba(255,255,255,.07);border-radius:2px;
   padding:36px 28px;position:relative;transition:.25s;display:flex;flex-direction:column;}
 .plan:hover{border-color:rgba(232,0,10,.3);transform:translateY(-4px);}
-.plan.feat{border-color:var(--r);box-shadow:0 0 50px rgba(232,0,10,.1);
-  background:linear-gradient(160deg,rgba(232,0,10,.06),var(--bg2) 50%);}
+.plan.feat{border-color:var(--r);box-shadow:0 0 50px rgba(232,0,10,.08);
+  background:linear-gradient(160deg,rgba(232,0,10,.05),#111 45%);}
 .plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);
   background:var(--r);font-family:var(--disp);font-size:11px;letter-spacing:3px;
   padding:3px 18px;white-space:nowrap;box-shadow:0 4px 20px rgba(232,0,10,.45);}
@@ -227,7 +232,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 .reviews-track{display:flex;gap:16px;width:max-content;animation:scroll-r 35s linear infinite;}
 .reviews-track:hover{animation-play-state:paused;}
 @keyframes scroll-r{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.review-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:2px;
+.review-card{background:#111;border:1px solid rgba(255,255,255,.06);border-radius:2px;
   padding:24px;width:300px;flex-shrink:0;}
 .review-stars{color:var(--r);font-size:12px;letter-spacing:3px;margin-bottom:12px;}
 .review-text{font-size:13px;color:var(--w3);line-height:1.7;margin-bottom:16px;}
@@ -246,13 +251,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 .faq-inner{max-width:720px;margin:0 auto;}
 .faq-header{text-align:center;margin-bottom:52px;}
 .faq-item{border:1px solid var(--bdr);margin-bottom:8px;border-radius:2px;overflow:hidden;}
-.faq-q{width:100%;background:var(--bg2);border:none;padding:20px 24px;cursor:pointer;
+.faq-q{width:100%;background:#111;border:none;padding:20px 24px;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s;}
-.faq-q:hover{background:var(--bg3);}
+.faq-q:hover{background:#161616;}
 .faq-q-text{font-family:var(--body);font-size:15px;font-weight:700;color:var(--w2);text-align:left;}
 .faq-icon{color:var(--r);font-size:22px;flex-shrink:0;transition:.3s;font-family:var(--disp);}
 .faq-item.open .faq-icon{transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:.35s;background:var(--bg2);}
+.faq-a{max-height:0;overflow:hidden;transition:.35s;background:#111;}
 .faq-item.open .faq-a{max-height:300px;}
 .faq-a p{padding:4px 24px 20px;font-size:14px;color:var(--w3);line-height:1.8;
   border-top:1px solid var(--bdr);}
@@ -277,7 +282,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 /* ═══ FOOTER ═══ */
 footer{padding:24px 48px;border-top:1px solid var(--bdr);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.footer-brand{font-family:var(--disp);font-size:16px;letter-spacing:5px;color:var(--w3);}
+.footer-brand{font-family:var(--disp);font-size:16px;letter-spacing:5px;color:#666;}
 .footer-brand span{color:var(--r);}
 .footer-copy{font-size:11px;color:var(--w4);letter-spacing:1px;font-family:var(--mono);}
 
@@ -357,6 +362,7 @@ footer{padding:24px 48px;border-top:1px solid var(--bdr);
     <a href="#fps" class="hide">Resultados</a>
     <a href="#planos">Planos</a>
     <a href="#app" class="hide">App</a>
+    <a href="#download" class="hide">Download</a>
     <a href="#faq">FAQ</a>
     <a href="https://discord.gg/bKnb8QGTGt" target="_blank" class="nav-cta">DISCORD</a>
   </div>
@@ -748,6 +754,38 @@ footer{padding:24px 48px;border-top:1px solid var(--bdr);
         <button class="faq-q" onclick="faq(this)"><span class="faq-q-text">Qual a diferença entre os planos?</span><span class="faq-icon">+</span></button>
         <div class="faq-a"><p>Básico: otimizações essenciais (limpeza, energia, modo de jogo). Pro: adiciona GPU tweaks, rede, RAM e desativa processos pesados. MAX: tudo desbloqueado — tweaks avançados de input lag, CSRSS realtime, BCD tweaks e muito mais.</p></div>
       </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- DOWNLOAD -->
+<div id="download">
+<div style="padding:88px 24px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:#0e0e0e;">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;flex-wrap:wrap;">
+    <div class="reveal-left">
+      <span class="sec-tag">Download</span>
+      <h2 class="sec-title" style="margin-bottom:14px;">BAIXE O <span>APP</span></h2>
+      <p style="color:var(--w3);font-size:15px;line-height:1.8;max-width:480px;margin-bottom:24px;">
+        Instale o Monteiro Tweaks no seu Windows e comece a otimizar em minutos. Após instalar, use o login que você recebe no Discord.
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;padding:6px 14px;border:1px solid rgba(255,255,255,.08);border-radius:1px;color:var(--w3);">WINDOWS 10/11</span>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;padding:6px 14px;border:1px solid rgba(255,255,255,.08);border-radius:1px;color:var(--w3);">~50MB</span>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;padding:6px 14px;border:1px solid rgba(255,255,255,.08);border-radius:1px;color:var(--w3);">GRATUITO</span>
+      </div>
+    </div>
+    <div class="reveal-right" style="text-align:center;">
+      <a href="https://drive.google.com/file/d/1bGfkO_g8nCTAhZObytFjuej38sKLcxSv/view?usp=sharing"
+         target="_blank"
+         style="display:inline-flex;align-items:center;gap:12px;background:var(--r);border:none;border-radius:2px;padding:18px 44px;font-family:var(--disp);font-size:22px;letter-spacing:4px;color:#fff;text-decoration:none;box-shadow:0 4px 40px rgba(232,0,10,.35);transition:.25s;white-space:nowrap;"
+         onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 56px rgba(232,0,10,.6)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 4px 40px rgba(232,0,10,.35)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14l-4-4 1.41-1.41L11 13.17V8h2v5.17l2.59-2.58L17 12l-6 6z"/></svg>
+        DOWNLOAD GRÁTIS
+      </a>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--w4);margin-top:12px;">REQUER LOGIN • RECEBA NO DISCORD</p>
     </div>
   </div>
 </div>
